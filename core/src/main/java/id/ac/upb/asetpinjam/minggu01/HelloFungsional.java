@@ -17,7 +17,6 @@ public final class HelloFungsional {
         return nama -> "Halo, " + nama + "! Selamat datang di Aset-Pinjam. NIM Anda: " + nim;
     }
 
-    
     public static void main(String[] args) {
         Varian v = Varian.aktif();
         System.out.println(pembuatSapaan(v.nim).apply(v.nama));
