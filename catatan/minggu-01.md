@@ -6,6 +6,7 @@ saya telah menyiapkan lingkungan pengembangan dasar seperti jdk21, maven, git da
 
 ## Keputusan desain
 
+
 Menggunakan tiga paradigma pemrograman dengan pendekatan yang berbeda. saya membuat format kalimat sapaan yang konsisten dengan ketiga gaya pemrograman yaitu dengan membuat teks "aset-pinjam", nama dan nim. Pada prosedural saya menggunakan fungsi static, pada OOP saya menggunakan atribut private dan konstruktor untuk mengelola data, sedangkan pada fungsional saya menggunakan lambda melalui fuction <String, String>. Saya menggunakan format yang sama agar memenuhi syarat pengujian otomatis.
 
 ## Kendala
