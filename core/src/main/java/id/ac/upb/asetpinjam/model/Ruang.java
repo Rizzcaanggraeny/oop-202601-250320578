@@ -26,7 +26,7 @@ public class Ruang extends Aset {
 
     @Override 
     public long hitungDenda(int hariTerlambat) {
-        return hitungDenda(hariTerlambat, 1);
+        return hariTerlambat * 5000;
     }
 
 }

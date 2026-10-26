@@ -16,4 +16,5 @@ Saya masih mencoba memahami penggunaan super() dan hubungan antara class induk d
 - Yang saya ubah atau tolak dari saran AI, dan alasannya: Saya mencoba mencocokkan saran tersebut dengan kode yang sudah saya buat dan hasil pengujian yang muncul namun, saran ai saya jadikan referensi dalam mengerjakan dan tidak ada code yang saya ambil dari ai.
 - Satu hal yang saya pahami lebih baik sekarang: Saya mulai memahami bahwa inheritance memungkinkan class turunan menggunakan bagian umum dari class induk dan memiliki atribut tambahan sesuai kebutuhannya 
 
+
 - Catatan : inharitance kurang tepat dibandingkan komposisi seperti contohnya sistem Aset-Pinjam menggunakan layanan notifikasi untuk memberi tahu pengguna ketika peminjaman disetujui. Layanan notifikasi lebih cocok menggunakan komposisi karena hanya membantu menjalankan fungsi tertentu dan bukan termasuk jenis aset.
