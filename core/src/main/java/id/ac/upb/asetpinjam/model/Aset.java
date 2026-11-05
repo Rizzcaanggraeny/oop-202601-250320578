@@ -16,25 +16,22 @@ public class Aset implements DapatDipinjam {
     // TODO minggu 2: field private: kode, nama, status (default TERSEDIA), kondisi (default BAIK).
 
     /** TODO minggu 2: kode dan nama tidak boleh null atau kosong (IllegalArgumentException). */
-   private final String kode;
+   private String kode;
    private String nama;
-   private StatusAset status;
-   private Kondisi kondisi;
+   private StatusAset status = StatusAset.TERSEDIA;
+   private Kondisi kondisi = Kondisi.BAIK;
 
     public Aset(String kode, String nama) {
-        this.kode = wajibAdaIsi(kode, "kode");
-        this.nama = wajibAdaIsi(nama, "nama");
-        this.status = StatusAset.TERSEDIA;
-        this.kondisi = Kondisi.BAIK;
-    }
-
-    private String wajibAdaIsi(String nilaiString, String namaField) {
-        if (nilaiString == null || nilaiString.isBlank()) {
-            throw new IllegalArgumentException(namaField + " tidak boleh null atau kosong");
+      if (kode == null || kode.trim().isEmpty()) {
+            throw new IllegalArgumentException("kode aset tidak boleh null atau kosong");
         }
-        return nilaiString.trim();
-    }     
-
+        if (nama == null || nama.trim().isEmpty()) {
+            throw new IllegalArgumentException("nama aset tidak boleh null atau kosong");
+        }
+        this.kode = kode.trim();
+        this.nama = nama.trim();
+    }
+  
     public String getKode(){
         return kode;
     }
@@ -53,7 +50,10 @@ public class Aset implements DapatDipinjam {
 
     /** TODO minggu 2: nama baru tidak boleh kosong. */
     public void setNama(String nama) {
-        this.nama = wajibAdaIsi(nama, "nama");   
+        if (nama == null || nama.trim().isEmpty()) {
+            throw new IllegalArgumentException("nama aset tidak boleh null atau kosong");
+        }
+        this.nama = nama.trim();
     }
         
     
@@ -86,6 +86,13 @@ public class Aset implements DapatDipinjam {
 
     /** TODO minggu 4: denda keterlambatan. Dioverride tiap subclass (aturan di docs/aturan-bisnis.md). */
     public long hitungDenda(int hariTerlambat) {
-        throw new UnsupportedOperationException("TODO minggu 4");
+        validasiHariTerlambat(hariTerlambat);
+        return 0; // Placeholder, to be implemented by subclasses
+    }
+
+    protected void validasiHariTerlambat(int hariTerlambat) {
+        if (hariTerlambat < 0) {
+            throw new IllegalArgumentException("hari terlambat tidak boleh negatif");
+        }
     }
 }
