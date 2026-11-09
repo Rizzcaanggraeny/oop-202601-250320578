@@ -11,7 +11,7 @@ import id.ac.upb.asetpinjam.kontrak.DapatDipinjam;
  * Minggu 5: isi bisaDipinjam() dan ubah menjadi class abstrak
  * (TestSupport.aset(...) di folder test menyesuaikan sendiri, lihat docs/minggu-05.md).
  */
-public class Aset implements DapatDipinjam {
+public abstract class Aset implements DapatDipinjam {
 
     // TODO minggu 2: field private: kode, nama, status (default TERSEDIA), kondisi (default BAIK).
 
@@ -22,10 +22,10 @@ public class Aset implements DapatDipinjam {
    private Kondisi kondisi = Kondisi.BAIK;
 
     public Aset(String kode, String nama) {
-      if (kode == null || kode.trim().isEmpty()) {
+      if (kode == null || kode.isBlank()) {
             throw new IllegalArgumentException("kode aset tidak boleh null atau kosong");
         }
-        if (nama == null || nama.trim().isEmpty()) {
+        if (nama == null || nama.isBlank()) {
             throw new IllegalArgumentException("nama aset tidak boleh null atau kosong");
         }
         this.kode = kode.trim();
@@ -50,8 +50,8 @@ public class Aset implements DapatDipinjam {
 
     /** TODO minggu 2: nama baru tidak boleh kosong. */
     public void setNama(String nama) {
-        if (nama == null || nama.trim().isEmpty()) {
-            throw new IllegalArgumentException("nama aset tidak boleh null atau kosong");
+        if (nama == null || nama.isBlank()) {
+            throw new IllegalArgumentException("Nama tidak boleh null atau kosong");
         }
         this.nama = nama.trim();
     }
@@ -76,7 +76,7 @@ public class Aset implements DapatDipinjam {
     /** TODO minggu 5: true hanya jika status TERSEDIA dan kondisi bukan RUSAK_BERAT. */
     @Override
     public boolean bisaDipinjam() {
-        throw new UnsupportedOperationException("TODO minggu 5");
+       return status == StatusAset.TERSEDIA && kondisi != Kondisi.RUSAK_BERAT;
     }
 
     /** TODO minggu 3: dioverride tiap subclass agar mengembalikan jenis yang benar. */
@@ -85,10 +85,7 @@ public class Aset implements DapatDipinjam {
     }
 
     /** TODO minggu 4: denda keterlambatan. Dioverride tiap subclass (aturan di docs/aturan-bisnis.md). */
-    public long hitungDenda(int hariTerlambat) {
-        validasiHariTerlambat(hariTerlambat);
-        return 0; // Placeholder, to be implemented by subclasses
-    }
+    public abstract long hitungDenda(int hariTerlambat);
 
     protected void validasiHariTerlambat(int hariTerlambat) {
         if (hariTerlambat < 0) {
